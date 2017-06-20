@@ -1,1 +1,4 @@
 static/* linguist-vendored=Java
+* linguist-vendored=Java
+*.css linguist-vendored=Java
+*.html linguist-vendored=Java
