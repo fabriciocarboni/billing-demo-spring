@@ -1,17 +1,10 @@
-!.mvn/wrapper/maven-wrapper.jar
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-
 *.class 
 .DS_Store 
 Servers/* 
 .metadata 
+.settings 
+.classpath 
+.project 
 target/ 
 bin/ 
 rebel.xml 
