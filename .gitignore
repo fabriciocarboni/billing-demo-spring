@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *.class
 .DS_Store
 Servers/*
@@ -10,3 +11,12 @@ bin/
 rebel.xml
 .mvn*
 mvnw*
+=======
+.idea/
+ingresso.iml
+target/
+.classpath
+.project
+.settings/
+mvnw/
+>>>>>>> branch 'master' of https://github.com/fabriciocarboni/billing-demo-spring.git
