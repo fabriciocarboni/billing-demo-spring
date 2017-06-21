@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.carboni.billing.model.Titulo;
 import com.carboni.billing.repository.Titulos;
@@ -25,10 +26,13 @@ public class TituloController {
 
 	//@RequestMapping(method = RequestMethod.POST)
 	@PostMapping
-	public String salvar(Titulo titulo) {
+	public ModelAndView salvar(Titulo titulo) {
 		
-		titulos.save(titulo);
-		return "CadastroTitulo";
+		titulos.save(titulo); //salva no banco de dados
+		
+		ModelAndView mv = new ModelAndView("CadastroTitulo");
+		mv.addObject("mensagem","Titulo salvo com sucesso!"); // Adciona msg no modelAndView para passar para o html CadastroTitulo.html
+		return mv;
 	}
 
 }
