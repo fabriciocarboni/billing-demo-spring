@@ -31,7 +31,6 @@ public class TituloController {
 		return mv;
 		
 	}
-	
 
 	//@RequestMapping(method = RequestMethod.POST)
 	@PostMapping
@@ -43,6 +42,13 @@ public class TituloController {
 		mv.addObject("mensagem","Titulo salvo com sucesso!"); // Adiciona msg no modelAndView para passar para o html CadastroTitulo.html
 		return mv;
 	}
+	
+	@GetMapping //Nao é necessário colocar o endereço pois já esse controller deve retornar a pesquisa de titulos assim que o request chega em /titulos, que esta mapeado já na linha 20
+	public String pesquisar() {
+		return "PesquisaTitulos";
+		
+	}
+	
 	
 	//Criado dentro de ModelAtribute para que o controller sempre tenha este objeto disponivel na view
 	//StatusTitulo é o enum. retorna o array com os valores todosStatusTitulo
