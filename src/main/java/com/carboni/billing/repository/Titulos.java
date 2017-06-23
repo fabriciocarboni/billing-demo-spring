@@ -13,3 +13,5 @@ import com.carboni.billing.model.Titulo;
 public interface Titulos extends JpaRepository<Titulo, Long>{
 
 }
+// conexao com h2
+//jdbc:h2:mem:testdb 
