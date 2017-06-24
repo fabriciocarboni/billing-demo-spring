@@ -44,8 +44,11 @@ public class TituloController {
 	}
 	
 	@GetMapping //Nao é necessário colocar o endereço pois já esse controller deve retornar a pesquisa de titulos assim que o request chega em /titulos, que esta mapeado já na linha 20
-	public String pesquisar() {
-		return "PesquisaTitulos";
+	public ModelAndView pesquisar() {
+		List<Titulo> todosTitulos = titulos.findAll(); //procura no bd todos os titulos. Esse repositorio de titulos só esta disponivel pois lá em cima teve um @Autowired injetando Titulos
+		ModelAndView mv = new ModelAndView("PesquisaTitulos");
+		mv.addObject("titulos",todosTitulos);
+		return mv;
 		
 	}
 	
