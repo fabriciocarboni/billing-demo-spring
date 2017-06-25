@@ -24,20 +24,19 @@
 				<div class="form-group" th:classappend="${#fields.hasErrors('descricao')} ? has-error">
 					<label for="descricao" class="col-sm-2 control-label">Descrição</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="descricao"
-							name="descricao" />
+						<input type="text" class="form-control" id="descricao" th:field="*{descricao}" /> <!-- th:field informa que o campo descricao é um feild do objeto titulo que foi informado no th:object do form action acima  -->
 					</div>
 				</div>
 				<div class="form-group" th:classappend="${#fields.hasErrors('dataVencimento')} ? has-error">
 					<label for="dataVencimento" class="col-sm-2 control-label">Data	de vencimento</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" id="dataVencimento"	name="dataVencimento" />
+						<input type="text" class="form-control" id="dataVencimento"	th:field="*{dataVencimento}" />
 					</div>
 				</div>
 				<div class="form-group" th:classappend="${#fields.hasErrors('valor')} ? has-error"><!-- verifica se tem erros no campo valor do objeto titulo passado la na tag form action acima, sem sim mostra este campo com a class has-errors do bootstrap -->
 					<label for="valor" class="col-sm-2 control-label">Valor</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" id="valor" name="valor" />
+						<input type="text" class="form-control" id="valor" th:field="*{valor}" /> <!-- quando usamos th:field o thymeleaf ja vai preencher com a propriedade name -->
 					</div>
 				</div>
 				<div class="form-group">

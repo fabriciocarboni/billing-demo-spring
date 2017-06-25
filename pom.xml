@@ -16,6 +16,7 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.4.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
+		<!-- Pode-se comentar relativePath pois ao salvar um titulo e o controller mandar para redirect:/titulos/novo, estava aparecendo na url (;jsessionid=DE4D5E51CC63F6A03B84D0DC782421F9 -->
 	</parent>
 
 	<properties>

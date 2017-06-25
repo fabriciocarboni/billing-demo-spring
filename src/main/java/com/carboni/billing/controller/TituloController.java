@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.carboni.billing.model.StatusTitulo;
 import com.carboni.billing.model.Titulo;
@@ -40,16 +41,14 @@ public class TituloController {
 
 	//@RequestMapping(method = RequestMethod.POST)
 	@PostMapping
-	public ModelAndView salvar(@Validated Titulo titulo, Errors errors) { //Indica ao spring para validar o classe Titulo, de acordo com as regras onde tiver anotacoes de validation como @NotNull por exemplo
-		ModelAndView mv = new ModelAndView("CadastroTitulo");
+	public String salvar(@Validated Titulo titulo, Errors errors, RedirectAttributes attributes) { //Indica ao spring para validar o classe Titulo, de acordo com as regras onde tiver anotacoes de validation como @NotNull por exemplo
 		if (errors.hasErrors()) {
-			return mv;
+			return "CadastroTitulo"; //Aqui retorna a pagina html CadastroTitulo.html
 		}
 		
 		titulos.save(titulo); //salva no banco de dados
-		
-		mv.addObject("mensagem","Titulo salvo com sucesso!"); // Adiciona msg no modelAndView para passar para o html CadastroTitulo.html
-		return mv;
+		attributes.addFlashAttribute("mensagem","Titulo salvo com sucesso!"); // Adiciona a msg de cadastro com sucesso ao redirecionar para /titulos/novo após clicar no botao salvar
+		return "redirect:/titulos/novo"; //Aqui retorna uma url
 	}
 	
 	@GetMapping //Nao é necessário colocar o endereço pois já esse controller deve retornar a pesquisa de titulos assim que o request chega em /titulos, que esta mapeado já na linha 20
