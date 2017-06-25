@@ -8,13 +8,9 @@
 <title>Cadastro de título</title>
 </head>
 
-<section layout:fragment="conteudo">
-	<form class="form-horizontal" method="POST" action="/titulos">
-
-		<div class="alert alert-success"
-			th:if="${!#strings.isEmpty(mensagem)}">
-			<span th:text="${mensagem}"></span>
-		</div>
+<section layout:fragment="conteudo"> <!-- inclui um fragmento de pagina -->
+	<form class="form-horizontal" method="POST" action="/titulos" th:object="${titulo}"> <!-- Disponibiliza os campos do objeto titulo da classe Titulo para validacao das msgs de erro no preenchimento do form do cadastro -->
+		<div layout:include="Mensagem"></div><!-- inclui a pagina Mensagem.html -->
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -25,22 +21,20 @@
 			</div>
 
 			<div class="panel-body">
-				<div class="form-group">
+				<div class="form-group" th:classappend="${#fields.hasErrors('descricao')} ? has-error">
 					<label for="descricao" class="col-sm-2 control-label">Descrição</label>
 					<div class="col-sm-4">
 						<input type="text" class="form-control" id="descricao"
 							name="descricao" />
 					</div>
 				</div>
-				<div class="form-group">
-					<label for="dataVencimento" class="col-sm-2 control-label">Data
-						de vencimento</label>
+				<div class="form-group" th:classappend="${#fields.hasErrors('dataVencimento')} ? has-error">
+					<label for="dataVencimento" class="col-sm-2 control-label">Data	de vencimento</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" id="dataVencimento"
-							name="dataVencimento" />
+						<input type="text" class="form-control" id="dataVencimento"	name="dataVencimento" />
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group" th:classappend="${#fields.hasErrors('valor')} ? has-error"><!-- verifica se tem erros no campo valor do objeto titulo passado la na tag form action acima, sem sim mostra este campo com a class has-errors do bootstrap -->
 					<label for="valor" class="col-sm-2 control-label">Valor</label>
 					<div class="col-sm-2">
 						<input type="text" class="form-control" id="valor" name="valor" />

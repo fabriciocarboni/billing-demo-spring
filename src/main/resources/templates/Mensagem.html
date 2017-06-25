@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org/"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+	<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+		<!-- nega se a string estiver vazia, ou seja, se todos os campos forem preenchidos -->
+		<span th:text="${mensagem}">Titulo salvo com sucesso!</span>
+		<!-- Esta msg é somente proforma pois a msg de sucesso ja vem do objeto e é exibida em ${mensagem} -->
+	</div>
+	
+	<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+		<!-- se dentro do objeto titulo tem erros retornados -->
+		<div th:each="detailedError : ${#fields.detailedErrors()}">
+			<!-- #fields.detailedErrors retorna uma lista de erros encontrados no objeto Titulo iterando sobre cada um-->
+			<span th:text="${detailedError.message}"></span>
+			<!--  mostra a mensagem de erro cadastrada na annotation @NotNull no objeto titulo (Titulo.java)-->
+		</div>
+	</div>
+
+
+</html>

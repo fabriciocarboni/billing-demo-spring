@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,17 +30,24 @@ public class TituloController {
 		
 		//Ao acessar esse endpoint, é necessario deixar disponivel o combo do campo status com todos os Enums
 		ModelAndView mv = new ModelAndView("CadastroTitulo");
+		
+		//Adiciona neste controller o objeto titulo para ser acessado na pagina CadastroTitulo.
+		//Esse objeto será acessado através desta tag html <form class="form-horizontal" method="POST" action="/titulos" th:object="${titulo}">
+		mv.addObject(new Titulo());
 		return mv;
 		
 	}
 
 	//@RequestMapping(method = RequestMethod.POST)
 	@PostMapping
-	public ModelAndView salvar(Titulo titulo) {
+	public ModelAndView salvar(@Validated Titulo titulo, Errors errors) { //Indica ao spring para validar o classe Titulo, de acordo com as regras onde tiver anotacoes de validation como @NotNull por exemplo
+		ModelAndView mv = new ModelAndView("CadastroTitulo");
+		if (errors.hasErrors()) {
+			return mv;
+		}
 		
 		titulos.save(titulo); //salva no banco de dados
 		
-		ModelAndView mv = new ModelAndView("CadastroTitulo");
 		mv.addObject("mensagem","Titulo salvo com sucesso!"); // Adiciona msg no modelAndView para passar para o html CadastroTitulo.html
 		return mv;
 	}
