@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -71,6 +72,15 @@ public class TituloController {
 		mv.addObject(titulo); //passa para view CadastroTitulo.html o codigo para edicao.
 		return mv;
 	}
+	
+	//implementa exclusao
+	//@PostMapping("{codigo}")
+	@RequestMapping(value="{codigo}", method = RequestMethod.DELETE)
+	public String excluir(@PathVariable Long codigo){
+		titulos.delete(codigo);
+		return "redirect:/titulos";
+	}
+	
 	
 	
 	//Criado dentro de ModelAtribute para que o controller sempre tenha este objeto disponivel na view

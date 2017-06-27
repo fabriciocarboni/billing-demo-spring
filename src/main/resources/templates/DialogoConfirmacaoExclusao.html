@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org/"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div class="modal fade" id="confirmacaoExclusaoModal" tabindex="-1" data-keyboard="false" data-backdrop="static"><!-- modal para ser exibido. A opção data-keyboard false a tecla esc é desativada. data-backdrop false, nao deixa sair do modal se o usuario clicar em qq area da tela -->
+	<div class="modal-dialog">
+	
+		<form action="/titulos" method="POST"><!-- poderia ser delete, mas pode dar problema. Por este motivo manda via post e o spring reconece que é um delete mapeado no controller -->
+			<input type="hidden" name="_method" value="DELETE"/> <!-- mapear DELETE no controller -->
+			
+			<div class="modal-content">
+				<div class="modal-header"> <!-- cabecalho do modal -->
+					<h4 class="modal-title">Você tem certeza?</h4>
+				</div>
+				
+				<div class="modal-body"> <!-- corpo do modal -->
+					<span>Tem ctz que deseja excluir o titulo?</span>
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button> <!-- cancelar o modal -->
+					<button type="submit" class="btn btn-primary">Excluir</button><!-- vai submeter o formulario -->
+					
+				</div>
+			</div>
+		</form>
+	</div>
+	
+</div>
+	
+</html>	
