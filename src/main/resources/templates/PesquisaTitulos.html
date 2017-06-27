@@ -41,7 +41,9 @@
 								th:classappend="${titulo.pendente ? 'label-danger' : 'label-success'}"></span>
 						</td>
 						<td class="text-center">
-							#
+							<a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"> <!-- exibe o codigo passado pelo controller. @ serve para dizer ao thymleaf que esta sendo montado um link. /titulos/{codigo}, codigo é o nome da variavel -->
+							  <span class="glyphicon glyphicon-pencil"></span>
+							</a>
 						</td>
 						
 						

@@ -21,6 +21,7 @@
 			</div>
 
 			<div class="panel-body">
+				<input type="hidden" th:field="*{codigo}"/> <!-- coloca o codigo do objeto passado na linha 12 como oculto. É necessário para edicao. Se o registro existir, ele será updated, caso contrário será criado um novo -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('descricao')} ? has-error">
 					<label for="descricao" class="col-sm-2 control-label">Descrição</label>
 					<div class="col-sm-4">
