@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -50,9 +51,14 @@ public class TituloController {
 			return CADASTRO_VIEW; //Aqui retorna a pagina html CadastroTitulo.html
 		}
 		
-		titulos.save(titulo); //salva no banco de dados
-		attributes.addFlashAttribute("mensagem","Titulo salvo com sucesso!"); // Adiciona a msg de cadastro com sucesso ao redirecionar para /titulos/novo após clicar no botao salvar
-		return "redirect:/titulos/novo"; //Aqui retorna uma url redirecinando para titulos/novo
+		try {
+			titulos.save(titulo); //salva no banco de dados
+			attributes.addFlashAttribute("mensagem","Titulo salvo com sucesso!"); // Adiciona a msg de cadastro com sucesso ao redirecionar para /titulos/novo após clicar no botao salvar
+			return "redirect:/titulos/novo"; //Aqui retorna uma url redirecinando para titulos/novo
+		} catch (DataIntegrityViolationException e) {
+			errors.rejectValue("dataVencimento", null, "Formato da data inválido");
+			return CADASTRO_VIEW;
+		}
 	}
 	
 	@GetMapping //Nao é necessário colocar o endereço pois já esse controller deve retornar a pesquisa de titulos assim que o request chega em /titulos, que esta mapeado já na linha 20

@@ -6,7 +6,7 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event){
 		
 	var modal = $(this);
 	var form = modal.find('form'); //procura o form
-	var action = form.attr('action'); //pegar a string do action do form
+	var action = form.data('url-base'); //pegar a string do action do form
 	if (!action.endsWith('/')){ //se a string nao terminar com /
 		action += '/';
 	}
@@ -17,4 +17,7 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event){
 });
 
 
-
+// executar algumas funcionalidades assim que terminar de carregar a pagina
+$(function() {
+	$('[rel="tooltip"]').tooltip() //procurar os componentes que sao tooltips e chame a funcao tooltip
+});

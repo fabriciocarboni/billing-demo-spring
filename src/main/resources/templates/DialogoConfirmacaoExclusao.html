@@ -6,7 +6,7 @@
 <div class="modal fade" id="confirmacaoExclusaoModal" tabindex="-1" data-keyboard="false" data-backdrop="static"><!-- modal para ser exibido. A opção data-keyboard false a tecla esc é desativada. data-backdrop false, nao deixa sair do modal se o usuario clicar em qq area da tela -->
 	<div class="modal-dialog">
 	
-		<form action="/titulos" method="POST"><!-- poderia ser delete, mas pode dar problema. Por este motivo manda via post e o spring reconece que é um delete mapeado no controller -->
+		<form th:attr="data-url-base='/titulos'" method="POST"><!-- poderia ser delete, mas pode dar problema. Por este motivo manda via post e o spring reconece que é um delete mapeado no controller -->
 			<input type="hidden" name="_method" value="DELETE"/> <!-- mapear DELETE no controller -->
 			
 			<div class="modal-content">

@@ -45,13 +45,15 @@
 
 						<td class="text-center">
 							<!-- botao edicao --> 
-							<a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}">  <!-- exibe o codigo passado pelo controller. @ serve para dizer ao thymleaf que esta sendo montado um link. /titulos/{codigo}, codigo é o nome da variavel -->
+							<a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}" title="Editar" rel="tooltip" data-placement="top">  <!-- exibe o codigo passado pelo controller. @ serve para dizer ao thymleaf que esta sendo montado um link. /titulos/{codigo}, codigo é o nome da variavel -->
 								<span class="glyphicon glyphicon-pencil"></span> <!-- O @ monta links dinamicos -->
 							</a> 
 						<!-- botao exclusao --> 
 						<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal"
-							 th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}">  <!-- chama o modal para criar uma caixa de dialogo para confirmação da exclusao do registro -->
+							 th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}"
+							 title="Excluir" rel="tooltip" data-placement="top">  <!-- chama o modal para criar uma caixa de dialogo para confirmação da exclusao do registro -->
 							 <!-- th:attr adiciona um atributo ao link passando como parametro titulo.codigo -->
+							 
 							<span class="glyphicon glyphicon-remove"></span>
 						</a>
 
@@ -65,7 +67,6 @@
 				</tbody>
 			</table>
 		</div>
-
 
 	<div layout:include="DialogoConfirmacaoExclusao"></div>
 
