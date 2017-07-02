@@ -20,4 +20,5 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event){
 // executar algumas funcionalidades assim que terminar de carregar a pagina
 $(function() {
 	$('[rel="tooltip"]').tooltip() //procurar os componentes que sao tooltips e chame a funcao tooltip
+	$('.js-currency').maskMoney({decimal:',', thousands: '.', allowZero: true}); //procurar a classe js-currency que foi definida no valor e aplica a funcao maskMoney
 });
