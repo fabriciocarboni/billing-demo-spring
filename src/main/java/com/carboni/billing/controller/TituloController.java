@@ -76,8 +76,10 @@ public class TituloController {
 	//implementa exclusao
 	//@PostMapping("{codigo}")
 	@RequestMapping(value="{codigo}", method = RequestMethod.DELETE)
-	public String excluir(@PathVariable Long codigo){
+	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes){
 		titulos.delete(codigo);
+		
+		attributes.addFlashAttribute("mensagem","Titulo excluido com sucesso!"); // Adiciona a msg de cadastro com sucesso ao redirecionar para /titulos/novo após clicar no botao salvar
 		return "redirect:/titulos";
 	}
 	

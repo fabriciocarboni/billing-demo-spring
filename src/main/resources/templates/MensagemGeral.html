@@ -10,14 +10,6 @@
 		<!-- Esta msg é somente proforma pois a msg de sucesso ja vem do objeto e é exibida em ${mensagem} -->
 	</div>
 	
-	<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
-		<!-- se dentro do objeto titulo tem erros retornados -->
-		<div th:each="detailedError : ${#fields.detailedErrors()}">
-			<!-- #fields.detailedErrors retorna uma lista de erros encontrados no objeto Titulo iterando sobre cada um-->
-			<span th:text="${detailedError.message}"></span>
-			<!--  mostra a mensagem de erro cadastrada na annotation @NotNull no objeto titulo (Titulo.java)-->
-		</div>
-	</div>
-
+	
 
 </html>

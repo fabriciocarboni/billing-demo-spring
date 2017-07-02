@@ -10,7 +10,8 @@
 
 <section layout:fragment="conteudo"> <!-- inclui um fragmento de pagina -->
 	<form class="form-horizontal" method="POST" action="/titulos" th:object="${titulo}"> <!-- Disponibiliza os campos do objeto titulo da classe Titulo para validacao das msgs de erro no preenchimento do form do cadastro -->
-		<div layout:include="Mensagem"></div><!-- inclui a pagina Mensagem.html -->
+		<div layout:include="MensagemGeral"></div><!-- inclui a pagina Mensagem.html -->
+		<div layout:include="MensagemErro"></div><!-- inclui a pagina Mensagem.html -->
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
