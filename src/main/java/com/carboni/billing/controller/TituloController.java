@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -20,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.carboni.billing.model.StatusTitulo;
 import com.carboni.billing.model.Titulo;
 import com.carboni.billing.repository.Titulos;
+import com.carboni.billing.service.CadastroTituloService;
 
 
 @Controller
@@ -30,6 +30,9 @@ public class TituloController {
 
 	@Autowired // injetando a instancia do repositório Titulos
 	private Titulos titulos;
+	
+	@Autowired
+	private CadastroTituloService cadastroTituloService;
 	
 	@GetMapping("/novo")
 	public ModelAndView novo() {
@@ -52,11 +55,12 @@ public class TituloController {
 		}
 		
 		try {
-			titulos.save(titulo); //salva no banco de dados
+			//titulos.save(titulo); //salva no banco de dados
+			cadastroTituloService.salvar(titulo); //alterado para utilizar a camada de serviço
 			attributes.addFlashAttribute("mensagem","Titulo salvo com sucesso!"); // Adiciona a msg de cadastro com sucesso ao redirecionar para /titulos/novo após clicar no botao salvar
 			return "redirect:/titulos/novo"; //Aqui retorna uma url redirecinando para titulos/novo
-		} catch (DataIntegrityViolationException e) {
-			errors.rejectValue("dataVencimento", null, "Formato da data inválido");
+		} catch (IllegalArgumentException e) {
+			errors.rejectValue("dataVencimento", null, e.getMessage());
 			return CADASTRO_VIEW;
 		}
 	}
@@ -83,7 +87,7 @@ public class TituloController {
 	//@PostMapping("{codigo}")
 	@RequestMapping(value="{codigo}", method = RequestMethod.DELETE)
 	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes){
-		titulos.delete(codigo);
+		cadastroTituloService.excluir(codigo);
 		
 		attributes.addFlashAttribute("mensagem","Titulo excluido com sucesso!"); // Adiciona a msg de cadastro com sucesso ao redirecionar para /titulos/novo após clicar no botao salvar
 		return "redirect:/titulos";
