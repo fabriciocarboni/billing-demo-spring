@@ -53,8 +53,14 @@
 							 th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}"
 							 title="Excluir" rel="tooltip" data-placement="top">  <!-- chama o modal para criar uma caixa de dialogo para confirmação da exclusao do registro -->
 							 <!-- th:attr adiciona um atributo ao link passando como parametro titulo.codigo -->
-							 
 							<span class="glyphicon glyphicon-remove"></span>
+						</a>
+						
+						<!-- botao receber pagamento -->
+						<a class="brn btn-link btn-xs js-atualiza-status" th:if="${titulo.pendente}"
+							title="Receber" rel="tooltip" data-placement="top"
+							th:href="@{/titulos/{codigo}/receber(codigo=${titulo.codigo})}">
+							<span class="glyphicon glyphicon-check"></span>
 						</a>
 
 						</td>

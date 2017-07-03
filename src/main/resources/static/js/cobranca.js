@@ -21,4 +21,19 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event){
 $(function() {
 	$('[rel="tooltip"]').tooltip() //procurar os componentes que sao tooltips e chame a funcao tooltip
 	$('.js-currency').maskMoney({decimal:',', thousands: '.', allowZero: true}); //procurar a classe js-currency que foi definida no valor e aplica a funcao maskMoney
+
+	$('.js-atualiza-status').on('click', function(event) { //seleciona os elementos desta classe/marcacao, executa function(event) que recebe o evento do link clicado
+		
+		event.preventDefault();
+		
+		var botaoReceber = $(event.currentTarget);
+		var urlReceber = botaoReceber.attr('href');
+		
+		console.log('urlReceber', urlReceber)
+		
+		
+	});
+
 });
+
+
