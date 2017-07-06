@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.carboni.billing.model.StatusTitulo;
 import com.carboni.billing.model.Titulo;
-import com.carboni.billing.repository.Titulos;
+import com.carboni.billing.repository.filter.TituloFilter;
 import com.carboni.billing.service.CadastroTituloService;
 
 
@@ -29,8 +29,9 @@ public class TituloController {
 	
 	private static final String CADASTRO_VIEW = "CadastroTitulo";
 
-	@Autowired // injetando a instancia do repositório Titulos
-	private Titulos titulos;
+	// retirado pois agora está sendo chamado através da camada de serviço CadastroTituloService.java
+	//@Autowired // injetando a instancia do repositório Titulos
+	//private Titulos titulos;
 	
 	@Autowired
 	private CadastroTituloService cadastroTituloService;
@@ -67,8 +68,12 @@ public class TituloController {
 	}
 	
 	@GetMapping //Nao é necessário colocar o endereço pois já esse controller deve retornar a pesquisa de titulos assim que o request chega em /titulos, que esta mapeado já na linha 20
-	public ModelAndView pesquisar() {
-		List<Titulo> todosTitulos = titulos.findAll(); //procura no bd todos os titulos. Esse repositorio de titulos só esta disponivel pois lá em cima teve um @Autowired injetando Titulos
+	//public ModelAndView pesquisar(@RequestParam(defaultValue = "%") String descricao) {
+	public ModelAndView pesquisar(@ModelAttribute("filtro") TituloFilter filtro) { //Diz ao spring para criar o ojbeto filtro utilizando a anotacao @ModelAtribute. Esse objeto filtro está informado na tag form através do parametro th:object="${filtro}"; Linha 23
+		//List<Titulo> todosTitulos = titulos.findAll(); //procura no bd todos os titulos. Esse repositorio de titulos só esta disponivel pois lá em cima teve um @Autowired injetando Titulos
+		// A parte de listagem / filtrar foi para a camada de serviço
+		
+		List<Titulo> todosTitulos = cadastroTituloService.filtrar(filtro);
 		ModelAndView mv = new ModelAndView("PesquisaTitulos");
 		mv.addObject("titulos",todosTitulos);
 		return mv;

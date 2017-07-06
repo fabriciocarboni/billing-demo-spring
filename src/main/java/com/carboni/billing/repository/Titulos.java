@@ -1,5 +1,7 @@
 package com.carboni.billing.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.carboni.billing.model.Titulo;
@@ -12,6 +14,9 @@ import com.carboni.billing.model.Titulo;
  */
 public interface Titulos extends JpaRepository<Titulo, Long>{
 
+	//forma de pesquisa
+	public List<Titulo> findByDescricaoContaining(String descricao); //Containing = like
+	
 }
 // conexao com h2
 //jdbc:h2:mem:testdb 

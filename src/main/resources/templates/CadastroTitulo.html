@@ -9,7 +9,7 @@
 </head>
 
 <section layout:fragment="conteudo"> <!-- inclui um fragmento de pagina -->
-	<form class="form-horizontal" method="POST" action="/titulos" th:object="${titulo}"> <!-- Disponibiliza os campos do objeto titulo da classe Titulo para validacao das msgs de erro no preenchimento do form do cadastro -->
+	<form class="form-horizontal" method="POST" th:action="@{/titulos}" th:object="${titulo}"> <!-- Disponibiliza os campos do objeto titulo da classe Titulo para validacao das msgs de erro no preenchimento do form do cadastro -->
 		<div layout:include="MensagemGeral"></div><!-- inclui a pagina Mensagem.html -->
 		<div layout:include="MensagemErro"></div><!-- inclui a pagina Mensagem.html -->
 
@@ -17,7 +17,7 @@
 			<div class="panel-heading">
 				<div class="clearfix">
 					<h1 class="panel-title titulo-panel">Novo título</h1>
-					<a class="btn btn-link link-panel" href="/titulos/">Voltar para pesquisa</a>
+					<a class="btn btn-link link-panel" th:href="@{/titulos/}">Voltar para pesquisa</a>
 			</div>
 			</div>
 

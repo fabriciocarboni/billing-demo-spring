@@ -1,5 +1,7 @@
 package com.carboni.billing.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.carboni.billing.model.StatusTitulo;
 import com.carboni.billing.model.Titulo;
 import com.carboni.billing.repository.Titulos;
+import com.carboni.billing.repository.filter.TituloFilter;
 
 @Service
 public class CadastroTituloService {
@@ -34,5 +37,15 @@ public class CadastroTituloService {
 	//excluir titulo
 	public void excluir(Long codigo) {
 		titulos.delete(codigo);
+	}
+	
+	//Listar titulos pelo filtro
+	public List<Titulo> filtrar(TituloFilter filtro) {
+		
+		String descricao = filtro.getDescricao() == null ? "%" : filtro.getDescricao(); // Se está recebendo descricao nula, faz essao operacao ternária. se for null manda um % se nao pega a descricao com filtro.getDescricao()
+		return titulos.findByDescricaoContaining(descricao); // Lista apenas os titulos contendo os caracters digitados no input 
+		
+		
+		
 	}
 }
