@@ -22,18 +22,29 @@ $(function() {
 	$('[rel="tooltip"]').tooltip() //procurar os componentes que sao tooltips e chame a funcao tooltip
 	$('.js-currency').maskMoney({decimal:',', thousands: '.', allowZero: true}); //procurar a classe js-currency que foi definida no valor e aplica a funcao maskMoney
 
-	$('.js-atualiza-status').on('click', function(event) { //seleciona os elementos desta classe/marcacao, executa function(event) que recebe o evento do link clicado
-		
+	$('.js-atualiza-status').on('click', function(event) {//seleciona os elementos desta classe/marcacao, executa function(event) que recebe o evento do link clicado
 		event.preventDefault();
 		
 		var botaoReceber = $(event.currentTarget);
 		var urlReceber = botaoReceber.attr('href');
+
+		var response = $.ajax({
+			url: urlReceber,
+			type: 'PUT'
+		});
+
+		response.done(function(e) {
+			var codigoTitulo = botaoReceber.data('codigo');
+			$('[data-role=' + codigoTitulo + ']').html('<span class="label label-success">' + e + '</span>');
+
+			botaoReceber.hide();
+		});
 		
-		console.log('urlReceber', urlReceber)
-		
-		
+		response.fail(function(e) {
+			console.log(e);
+			alert('Erro recebendo cobrança');
+		});
+
 	});
 
 });
-
-
