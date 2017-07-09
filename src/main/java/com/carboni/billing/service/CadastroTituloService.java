@@ -43,7 +43,7 @@ public class CadastroTituloService {
 	public List<Titulo> filtrar(TituloFilter filtro) {
 		
 		String descricao = filtro.getDescricao() == null ? "%" : filtro.getDescricao(); // Se está recebendo descricao nula, faz essao operacao ternária. se for null manda um % se nao pega a descricao com filtro.getDescricao()
-		return titulos.findByDescricaoContaining(descricao); // Lista apenas os titulos contendo os caracters digitados no input 
+		return titulos.findByDescricaoContainingIgnoreCase(descricao); // Lista apenas os titulos contendo os caracters digitados no input 
 		
 		
 		

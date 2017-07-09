@@ -15,7 +15,7 @@ import com.carboni.billing.model.Titulo;
 public interface Titulos extends JpaRepository<Titulo, Long>{
 
 	//forma de pesquisa
-	public List<Titulo> findByDescricaoContaining(String descricao); //Containing = like
+	public List<Titulo> findByDescricaoContainingIgnoreCase(String descricao); //Containing = like
 	
 }
 // conexao com h2
