@@ -10,3 +10,4 @@ bin/
 rebel.xml
 .mvn*
 mvnw/
+application.properties
